@@ -1,5 +1,4 @@
 from wxauto import WeChat
-from pathlib import Path
 
 class sender:
     
