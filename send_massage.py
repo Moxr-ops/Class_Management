@@ -7,13 +7,16 @@ class sender:
         #self.wx = WeChat()
 
     
-    def send_message_to_contacts(self, message, message_type='text'):
+    def send_message_to_contacts(self, message_type='text'):
         try:
             wx = WeChat()
             if message_type == 'text':
                 # 发送文本消息
+                with open('msg.txt', 'r', encoding='utf-8') as file:
+                    message = file.read()
                 for contact in self.contact_list:
-                    wx.SendMsg(message, contact)
+                    current_message = message.replace("@", str(contact)).replace("\"", "")  # 使用副本
+                    wx.SendMsg(current_message, contact)
             elif message_type == 'file':
                 for contact in self.contact_list:
                     message = message.replace("\\", "/").replace("\"", "")

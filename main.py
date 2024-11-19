@@ -38,16 +38,16 @@ if __name__ == '__main__':
         print(f"{name}\n")
     print(f"共{len(missing_name)}个\n")
 
-    to_send = input("\n是否转到给缺失同学群发消息？（是：1，否：0）\n")
+    to_send = int(input("\n是否转到给缺失同学群发消息？（是：1，否：0）\n"))
     if to_send:
 
         Sender = send_massage.sender(missing_name)
 
-        massage_text = input("\n请输入要发送文本消息：\n")
+        print("\n请将要发送的消息写入msg.txt文件中\n")
         massage_file = input("\n请输入要发送的文件地址，若不需发送文件，请输入0：\n")
 
         try:
-            Sender.send_message_to_contacts(massage_text, "text")
+            Sender.send_message_to_contacts("text")
             if massage_file and massage_file != '0':
                 Sender.send_message_to_contacts(massage_file, 'file')
             else:
